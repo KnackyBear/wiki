@@ -1,2 +1,1 @@
-# wiki
-My own Wiki
+[My own Wiki here](https://github.com/julienvinet/wiki/wiki)
