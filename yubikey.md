@@ -1,7 +1,7 @@
 # Yubikey
 
 ## Resources
-
+ 
   * [PGP and SSH keys on a Yubikey NEO](https://www.esev.com/blog/post/2015-01-pgp-ssh-key-on-yubikey-neo/)
   * [Yubikey on Archlinux](https://wiki.archlinux.org/index.php/YubiKey)
   * [Recommandations from NIST : SP 800-57 Part 1](http://csrc.nist.gov/publications/PubsSPs.html#800-57-part1)
