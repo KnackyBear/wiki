@@ -75,10 +75,10 @@ Is this correct? (y/N) y
 GnuPG needs to construct a user ID to identify your key.
 
 Real name: Julien Vinet
-Email address: contact@julienvinet.dev
+Email address: gpg@julienvinet.dev
 Comment: 
 You selected this USER-ID:
-    "Julien Vinet <contact@julienvinet.dev>"
+    "Julien Vinet <gpg@julienvinet.dev>"
 
 Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? o
 We need to generate a lot of random bytes. It is a good idea to perform
@@ -93,7 +93,7 @@ public and secret key created and signed.
 
 pub   nistp256 2020-06-17 [C]
       B9D63910B20B8D1D354181398A3A9D1CE64EE5A8
-uid                      Julien Vinet <contact@julienvinet.dev>
+uid                      Julien Vinet <gpg@julienvinet.dev>
 
 ```
 
@@ -133,7 +133,7 @@ sec  nistp256/8A3A9D1CE64EE5A8
      trust: ultimate      validity: ultimate
 ssb  rsa2048/E41B1D5D62E705D0
      created: 2020-06-17  expires: 2021-06-17  usage: E   
-[ultimate] (1). Julien Vinet <contact@julienvinet.dev>
+[ultimate] (1). Julien Vinet <gpg@julienvinet.dev>
 
 gpg> save
 ```
@@ -192,7 +192,7 @@ ssb  rsa2048/E41B1D5D62E705D0
 ssb  rsa2048/DF071DC45C644EC7
      created: 2020-06-17  expires: 2021-06-17  usage: S   
      card-no: 0006 12083527
-[ultimate] (1). Julien Vinet <contact@julienvinet.dev>
+[ultimate] (1). Julien Vinet <gpg@julienvinet.dev>
 
 gpg> addcardkey 
 Signature key ....: DB57 BDF4 C2FE 919F 6E56  3011 DF07 1DC4 5C64 4EC7
@@ -227,7 +227,7 @@ ssb  rsa2048/DF071DC45C644EC7
 ssb  rsa2048/E069F0C0AB7077FD
      created: 2020-06-17  expires: 2021-06-17  usage: A   
      card-no: 0006 12083527
-[ultimate] (1). Julien Vinet <contact@julienvinet.dev>
+[ultimate] (1). Julien Vinet <gpg@julienvinet.dev>
 
 gpg> toggle
 
@@ -242,7 +242,7 @@ ssb  rsa2048/DF071DC45C644EC7
 ssb  rsa2048/E069F0C0AB7077FD
      created: 2020-06-17  expires: 2021-06-17  usage: A   
      card-no: 0006 12083527
-[ultimate] (1). Julien Vinet <contact@julienvinet.dev>
+[ultimate] (1). Julien Vinet <gpg@julienvinet.dev>
 
 gpg> key 1
 
@@ -257,7 +257,7 @@ ssb  rsa2048/DF071DC45C644EC7
 ssb  rsa2048/E069F0C0AB7077FD
      created: 2020-06-17  expires: 2021-06-17  usage: A   
      card-no: 0006 12083527
-[ultimate] (1). Julien Vinet <contact@julienvinet.dev>
+[ultimate] (1). Julien Vinet <gpg@julienvinet.dev>
 
 gpg> keytocard
 Please select where to store the key:
@@ -275,7 +275,7 @@ ssb  rsa2048/DF071DC45C644EC7
 ssb  rsa2048/E069F0C0AB7077FD
      created: 2020-06-17  expires: 2021-06-17  usage: A   
      card-no: 0006 12083527
-[ultimate] (1). Julien Vinet <contact@julienvinet.dev>
+[ultimate] (1). Julien Vinet <gpg@julienvinet.dev>
 
 gpg> save
 ```
@@ -300,10 +300,10 @@ ssb  rsa2048/DF071DC45C644EC7
 ssb  rsa2048/E069F0C0AB7077FD
      created: 2020-06-17  expires: 2021-06-17  usage: A   
      card-no: 0006 12083527
-[ultimate] (1). Julien Vinet <contact@julienvinet.dev>
+[ultimate] (1). Julien Vinet <gpg@julienvinet.dev>
 
 gpg> showpref
-[ultimate] (1). Julien Vinet <contact@julienvinet.dev>
+[ultimate] (1). Julien Vinet <gpg@julienvinet.dev>
      Cipher: AES256, AES192, AES, CAST5, 3DES
      Digest: SHA512, SHA384, SHA256, SHA224, SHA1
      Compression: ZLIB, BZIP2, ZIP, Uncompressed
@@ -440,7 +440,7 @@ Encryption key....: 1559 7154 5AB8 0F00 0608  E464 E41B 1D5D 62E7 05D0
       created ....: 2020-06-17 21:15:47
 Authentication key: 4B5A ECDA 7F53 BC34 185C  EB8D E069 F0C0 AB70 77FD
       created ....: 2020-06-17 21:39:52
-General key info..: sub  rsa2048/DF071DC45C644EC7 2020-06-17 Julien Vinet <contact@julienvinet.dev>
+General key info..: sub  rsa2048/DF071DC45C644EC7 2020-06-17 Julien Vinet <gpg@julienvinet.dev>
 sec#  nistp256/8A3A9D1CE64EE5A8  created: 2020-06-17  expires: never     
 ssb>  rsa2048/E41B1D5D62E705D0  created: 2020-06-17  expires: 2021-06-17
                                 card-no: 0006 12083527
