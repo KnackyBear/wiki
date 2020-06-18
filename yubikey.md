@@ -466,5 +466,5 @@ $ sudo systemctl status pcscd.service
 ### Kill/Restart GPG Agent
 
 ```
-gconf --kill gpg-agent
+gconf --kill gpg-agent 
 ```
