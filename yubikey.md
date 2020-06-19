@@ -149,8 +149,7 @@ $ gpg --export-secret-keys E64EE5A8 > \
 
 ## Generate the signing and authentication subkeys
 
-From Yubikey Series 5, ykpersonnalize is replaced by [yubikey-manager](https://developers.yubico.com/yubikey-manager/) (called ykman in CLI).
-On Archlinux, you can install it with [AUR](https://www.archlinux.org/packages/?name=yubikey-manager) :
+From Yubikey Series 4 and older, ykpersonnalize is replaced by [yubikey-manager](https://developers.yubico.com/yubikey-manager/) (called ykman in CLI). On Archlinux, you can install it with [AUR](https://www.archlinux.org/packages/?name=yubikey-manager) :
 ```
 $ yay -S yubikey-manager
 ```
@@ -504,5 +503,7 @@ $ sudo systemctl status pcscd.service
 ### Kill/Restart GPG Agent
 
 ```
-gconf --kill gpg-agent 
+$ gconf --kill gpg-agent 
+
+$ gconf --launch gpg-agent
 ```
