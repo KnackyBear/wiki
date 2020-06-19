@@ -450,6 +450,37 @@ ssb>  rsa2048/E069F0C0AB7077FD  created: 2020-06-17  expires: 2021-06-17
                                 card-no: 0006 12083527
 ```
 
+## Configure SSH over GPG
+
+~/.bashrc
+```
+# Start the gpg-agent if not already running
+if ! pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
+	gpg-connect-agent /bye >/dev/null 2>&1
+fi
+gpg-connect-agent updatestartuptty /bye >/dev/null
+# use a tty for gpg
+# solves error: "gpg: signing failed: Inappropriate ioctl for device"
+GPG_TTY=$(tty)
+export GPG_TTY
+# Set SSH to use gpg-agent
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+	if [[ -z "$SSH_AUTH_SOCK" ]] || [[ "$SSH_AUTH_SOCK" == *"apple.launchd"* ]]; then
+		SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+		export SSH_AUTH_SOCK
+	fi
+fi
+```
+
+If you wish to run an alternative SSH agent (e.g. ssh-agent or gpg-agent), you need to disable the ssh component of GNOME Keyring. To do so in an account-local way, copy ``/etc/xdg/autostart/gnome-keyring-ssh.desktop`` to ``~/.config/autostart/`` and then append the line Hidden=true to the copied file. Then log out.
+
+> Note: In case you use GNOME 3.24 or older on Wayland, gnome-shell will overwrite SSH_AUTH_SOCK to point to  gnome-keyring regardless if it is running or not. To prevent this, you need to set the environment variable ``GSM_SKIP_SSH_AGENT_WORKAROUND`` before gnome-shell is started. One way to do this is to add the line ``GSM_SKIP_SSH_AGENT_WORKAROUND DEFAULT=1`` to ``~/.pam_environment``.
+
+Finally, approve your ssh key :
+```
+$ ssh-add
+```
 
 ## Known issues
 
