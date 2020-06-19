@@ -11,7 +11,7 @@
 
 ## Generate the master key
 
-**Prerequisites :** GnuPG packages are installed.
+> **Prerequisites :** GnuPG packages are installed.
 
 ```
 
