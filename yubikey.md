@@ -11,13 +11,15 @@
 
 ## Generate the master key
 
+**Prerequisites :** GnuPG packages are installed.
+
 ```
 
-$ mv .gnupg .gnupg.orig
-$ ln -s /media/USB .gnupg
+$ mv ~/.gnupg ~/.gnupg.orig
+$ ln -s /media/USB ~/.gnupg
 
-$ echo "cert-digest-algo SHA512" >> .gnupg/gpg.conf
-$ echo "default-preference-list SHA512 SHA384 SHA256 SHA224 AES256 AES192 AES CAST5 ZLIB BZIP2 ZIP Uncompressed" >> .gnupg/gpg.conf
+$ echo "cert-digest-algo SHA512" >> ~/.gnupg/gpg.conf
+$ echo "default-preference-list SHA512 SHA384 SHA256 SHA224 AES256 AES192 AES CAST5 ZLIB BZIP2 ZIP Uncompressed" >> ~/.gnupg/gpg.conf
 
 $ gpg --expert --full-gen-key 
 
@@ -318,9 +320,9 @@ $ gpg --armor --export E64EE5A8 > E64EE5A8.asc
 ## Remove the master key and update the Yubikey
 
 ```
-$ rm .gnupg
+$ rm ~/.gnupg
 
-$ mv .gnupg.orig .gnupg
+$ mv ~/.gnupg.orig ~/.gnupg
 
 $ gpg --card-edit
 
@@ -477,12 +479,17 @@ If you wish to run an alternative SSH agent (e.g. ssh-agent or gpg-agent), you n
 
 > Note: In case you use GNOME 3.24 or older on Wayland, gnome-shell will overwrite SSH_AUTH_SOCK to point to  gnome-keyring regardless if it is running or not. To prevent this, you need to set the environment variable ``GSM_SKIP_SSH_AGENT_WORKAROUND`` before gnome-shell is started. One way to do this is to add the line ``GSM_SKIP_SSH_AGENT_WORKAROUND DEFAULT=1`` to ``~/.pam_environment``.
 
-Finally, approve your ssh key :
+Finally, approve your SSH key :
 ```
 $ ssh-add
 ```
 
-## Known issues
+You can find you SSH public key :
+```
+$ ssh-add -L
+```
+
+## Troubleshooting
 
 ### EstablishContextException: 'Failure to establish context: Service not available.'
 
