@@ -579,6 +579,8 @@ auth sufficient pam_yubico.so id=[Your API Client ID] authfile=/etc/yubikey_mapp
 
 > To get your API Client ID, go [here](https://upgrade.yubico.com/getapikey/)
 
+> **Note :** Such as offline method, you can change your pam auth from ``sufficient`` to ``required`` if all is good for you.
+
 ### Individual authorization mapping by user
 
 Each user creates a ``~/.yubico/authorized_yubikeys`` file inside of their home directory and places the mapping in that file, the file must have only one line:
@@ -599,6 +601,14 @@ bash: cccccccgklgcvnkcvnnegrnhgrjkhlkfhdkclfncvlgj: command not found
 ```
 
 In this example, your public ID is : ``cccccccgklgc``
+
+## Executing actions on insertion/removal of YubiKey device
+For example, you want to perform an action when you pull your YubiKey out of the USB slot, create ``/etc/udev/rules.d/80-yubikey-actions.rules`` and add the following contents:
+
+```
+ACTION=="remove", ENV{ID_VENDOR}=="Yubico", ENV{ID_VENDOR_ID}=="1050", ENV{ID_MODEL_ID}=="0010|0111|0112|0113|0114|0115|0116|0401|0402|0403|0404|0405|0406|0407|0410", RUN+="/usr/local/bin/script args"
+```
+Please note, most keys are covered within this example but it may not work for all versions of YubiKey. You will have to look at the output of ``lsusb`` to get the vendor and model ID's, along with the description of the device or you could use udevadm to get information. Of course, to execute a script on insertion, you would change the action to 'add' instead of remove.
 
 ## Troubleshooting
 
