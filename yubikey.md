@@ -610,6 +610,34 @@ ACTION=="remove", ENV{ID_VENDOR}=="Yubico", ENV{ID_VENDOR_ID}=="1050", ENV{ID_MO
 ```
 Please note, most keys are covered within this example but it may not work for all versions of YubiKey. You will have to look at the output of ``lsusb`` to get the vendor and model ID's, along with the description of the device or you could use udevadm to get information. Of course, to execute a script on insertion, you would change the action to 'add' instead of remove.
 
+### Example : Lock your screen when you unplug your yubikey
+
+For this example, I use [gnome-screensaver](https://www.archlinux.org/packages/?name=gnome-screensaver) but it's work with others lock screen : ``xscreenlock``, ``i3lock``, etc.
+
+Create an udev rule ``/etc/udev/rules.d/90-yubikey-actions.rules``:
+```
+SUBSYSTEM=="input", ACTION=="remove", ENV{ID_VENDOR_ID}=="1050", ENV{ID_MODEL_ID}=="0010|0111|0112|0113|0114|0115|0116|0401|0402|0403|0404|0405|0406|0407|0410", RUN+="/usr/local/bin/ykgone"
+```
+
+Create your locker script ``/usr/local/bin/ykgone``:
+```
+#!/bin/bash
+
+X_USER=<insert your user here>
+export DISPLAY=:0
+export XAUTHORITY=/home/$X_USER/.Xauthority
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+
+su $X_USER -c '/usr/bin/gnome-screensaver-command --lock'
+```
+
+Reload udev rules :
+```
+$ sudo udevadm control -R && udevadm trigger
+```
+
+Try to plug and unplug your key...
+
 ## Troubleshooting
 
 ### EstablishContextException: 'Failure to establish context: Service not available.'
