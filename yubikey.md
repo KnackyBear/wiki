@@ -650,10 +650,15 @@ $ sudo systemctl start pcscd.service
 $ sudo systemctl status pcscd.service
 ```
 
+### sign_and_send_pubkey: signing failed for RSA "cardno:xxxxxxxxxxxxxx" from agent: agent refused operation
+
+```
+$ gpg-connect-agent updatestartuptty /bye
+```
+
 ### Kill/Restart GPG Agent
 
 ```
 $ gconf --kill gpg-agent 
-
 $ gconf --launch gpg-agent
 ```
