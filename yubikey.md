@@ -1,5 +1,29 @@
 # Yubikey
 
+ * [Resources](yubikey.md#resources)
+ * [PGP and SSH keys on a Yubikey 5 NFC](yubikey.md#pgp-and-ssh-keys-on-a-yubikey-5-nfc)
+   * [Generate the master key](yubikey.md#generate-the-master-key)
+   * [Generate the encryption subkey](yubikey.md#generate-the-encryption-subkey)
+   * [Make a backup of secret keys](yubikey.md#make-a-backup-of-secret-keys)
+   * [Generate the signing and authentication subkeys](yubikey.md#generate-the-signing-and-authentication-subkeys)
+   * [Save and distribute the public OpenPGP key](yubikey.md#save-and-distribute-the-public-openpgp-key)
+   * [Remove the master key and update the Yubikey](yubikey.md#remove-the-master-key-and-update-the-yubikey)
+   * [Configure SSH over GPG](yubikey.md#configure-ssh-over-gpg)
+ * [Linux authentication over Yubikey's Challenge-response](yubikey.md#linux-authentication-over-yubikeys-challenge-response)
+   * [Challenge-response authentication setup (offline method)](yubikey.md#challenge-response-authentication-setup-offline-method)
+   * [Activation](yubikey.md#activation)
+ * [Authentication using YubiCloud (online method)](yubikey.md#authentication-using-yubicloud-online-method)
+   * [Central authorization mapping](yubikey.md#central-authorization-mapping)
+   * [Individual authorization mapping by user](yubikey.md#individual-authorization-mapping-by-user)
+   * [Obtaining the YubiKey token ID (a.k.a. public ID)](yubikey.md#obtaining-the-yubikey-token-id-aka-public-id)
+ * [Executing actions on insertion/removal of YubiKey device](yubikey.md#executing-actions-on-insertionremoval-of-yubikey-device)
+   * [Example : Lock your screen when you unplug your yubikey](yubikey.md#example--lock-your-screen-when-you-unplug-your-yubikey)
+ * [Troubleshooting](yubikey.md#troubleshooting)
+   * [EstablishContextException: 'Failure to establish context: Service not available.'](yubikey.md#establishcontextexception-failure-to-establish-context-service-not-available)
+   * [sign_and_send_pubkey: signing failed for RSA "cardno:xxxxxxxxxxxxxx" from agent: agent refused operation](yubikey.md#sign_and_send_pubkey-signing-failed-for-rsa-cardnoxxxxxxxxxxxxxx-from-agent-agent-refused-operation)
+   * [Kill/Restart GPG Agent](yubikey.md#killrestart-gpg-agent)
+
+
 ## Resources
  
   * [PGP and SSH keys on a Yubikey NEO](https://www.esev.com/blog/post/2015-01-pgp-ssh-key-on-yubikey-neo/)
