@@ -668,7 +668,7 @@ Try to plug and unplug your key...
 
 For Archlinux user :
 ```
-$ yay -S acsccid
+$ sudo pacman -S pcsclite ccid
 $ sudo systemctl enable pcscd.service
 $ sudo systemctl start pcscd.service 
 $ sudo systemctl status pcscd.service
