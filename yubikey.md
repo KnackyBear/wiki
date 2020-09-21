@@ -686,3 +686,13 @@ $ gpg-connect-agent updatestartuptty /bye
 $ gconf --kill gpg-agent 
 $ gconf --launch gpg-agent
 ```
+
+### No identities for SSH Agent on Gnome
+
+You have to disable gnome-keyring.
+
+```
+$ cp /etc/xdg/autostart/gnome-keyring-ssh.desktop ~/.config/autostart/
+$ echo "Hidden=true" >> ~/.config/autostart/gnome-keyring-ssh.desktop
+$ echo "GSM_SKIP_SSH_AGENT_WORKAROUND DEFAULT=1" >> ~/.pam_environment
+```
