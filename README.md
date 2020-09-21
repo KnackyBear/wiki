@@ -1,4 +1,4 @@
 # Table of contents
 
-[NVIDIA Optimus for Archlinux](optimus.md)
-[Yubikey](yubikey.md)
+  * [NVIDIA Optimus for Archlinux](optimus.md)
+  * [Yubikey](yubikey.md)
