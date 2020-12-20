@@ -23,6 +23,7 @@
 
 ### Install
   * Package [Bumblebee](https://www.archlinux.org/packages/?name=bumblebee), 
+  * Package [bbswitch](https://archlinux.org/packages/?name=bbswitch),
   * Package [mesa](https://www.archlinux.org/packages/?name=mesa), 
   * An appropriate version of the [Nvidia Driver](https://wiki.archlinux.org/index.php/NVIDIA#Installation),
   * [xf86-video-intel](https://www.archlinux.org/packages/?name=xf86-video-intel)
