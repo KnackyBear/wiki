@@ -1,5 +1,17 @@
 # Create your development environment in Windows using WSL2
 
+  - [Resources](#resources)
+  - [Install WSL 2](#install-wsl-2)
+  - [OpenSSH Installation](#openssh-installation)
+  - [Install GPG4Win](#install-gpg4win)
+  - [Access your Yubikey in WSL2](#access-your-yubikey-in-wsl2)
+    - [Prerequisites](#prerequisites)
+    - [Sync socket](#sync-socket)
+    - [Import GPG Key to WSL2](#import-gpg-key-to-wsl2)
+    - [Using Yubikey over SSH](#using-yubikey-over-ssh)
+  - [Configure git & github with your Yubikey](#configure-git--github-with-your-yubikey)
+  - [Configure Visual Studio Code with WSL2](#configure-visual-studio-code-with-wsl2)
+  - [Install docker for windows with WSL2 Backend](#install-docker-for-windows-with-wsl2-backend)
 
 ## Resources
 
@@ -192,5 +204,4 @@ That's all, Enjoy :D
 Download and install [Docker desktop for Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows/).
 
 On configuration window, check ``Install required Windows components for WSL 2``
-
 
