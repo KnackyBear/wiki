@@ -12,6 +12,7 @@
   - [Configure git & github with your Yubikey](#configure-git--github-with-your-yubikey)
   - [Configure Visual Studio Code with WSL2](#configure-visual-studio-code-with-wsl2)
   - [Install docker for windows with WSL2 Backend](#install-docker-for-windows-with-wsl2-backend)
+  - [Install python with pyenv](#install-python-with-pyenv)
 
 ## Resources
 
@@ -20,6 +21,7 @@
   * [The ultimate guide to yubikey on WSL2 by Jaroslav Živný](https://dev.to/dzerycz/the-ultimate-guide-to-yubikey-on-wsl2-part-2-kli)
   * [WSL2-ssh-pageant github's repository by BlackReloaded](https://github.com/BlackReloaded/wsl2-ssh-pageant)
   * [Docker desktop WSL2 Backend](https://docs.docker.com/docker-for-windows/wsl/)
+  * [Pyenv documentation](https://github.com/pyenv/pyenv)
 
 ## Install WSL 2
 
@@ -204,4 +206,45 @@ That's all, Enjoy :D
 Download and install [Docker desktop for Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows/).
 
 On configuration window, check ``Install required Windows components for WSL 2``
+
+## Install python with pyenv
+
+Download and install using ``pyenv-installer``
+```
+# WSL2
+$ curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+```
+
+Add to your ``.bashrc``
+```
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+# Pyenv initialization
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init --path)"
+fi
+```
+
+Install pyenv dependencies
+```
+# WSL2
+$ sudo apt-get install --yes libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libgdbm-dev lzma lzma-dev tcl-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev wget curl make build-essential python-openssl 
+```
+
+Reload your shell
+```
+# WSL2
+$ exec $SHELL
+```
+
+You can now use pyenv to install multi version of python
+```
+# WSL2
+# List versions
+$ pyenv install -l
+
+# Install version
+$ pyenv install <version>
+```
 
