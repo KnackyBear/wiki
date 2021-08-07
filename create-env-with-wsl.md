@@ -1,5 +1,6 @@
 # Create your development environment in Windows using WSL2
 
+- [Create your development environment in Windows using WSL2](#create-your-development-environment-in-windows-using-wsl2)
   - [Resources](#resources)
   - [Install WSL 2](#install-wsl-2)
   - [OpenSSH Installation](#openssh-installation)
@@ -13,6 +14,7 @@
   - [Configure Visual Studio Code with WSL2](#configure-visual-studio-code-with-wsl2)
   - [Install docker for windows with WSL2 Backend](#install-docker-for-windows-with-wsl2-backend)
   - [Install python with pyenv](#install-python-with-pyenv)
+  - [Install npm with nvm](#install-npm-with-nvm)
 
 ## Resources
 
@@ -22,10 +24,16 @@
   * [WSL2-ssh-pageant github's repository by BlackReloaded](https://github.com/BlackReloaded/wsl2-ssh-pageant)
   * [Docker desktop WSL2 Backend](https://docs.docker.com/docker-for-windows/wsl/)
   * [Pyenv documentation](https://github.com/pyenv/pyenv)
+  * [Nvm github's repository](https://github.com/nvm-sh/nvm)
 
 ## Install WSL 2
 
 In a privileged powershell console :
+
+Activate Windows Subsytem Linux
+```
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+```
 
 Activate Virtual Machine Platform
 ```
@@ -58,7 +66,6 @@ State : NotPresent
 ```
 If ``OpenSSH.Client`` is already installed, go to the next chapter, else install the client components as needed:
 ```
-# Install the OpenSSH Client
 Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
 ```
 
@@ -103,10 +110,10 @@ gpg-connect-agent /bye
 
 Install socat and wsl2-ssh-pageant in WSL:
 ```
-$ sudo apt install socat
-$ mkdir ~/.ssh
-$ wget https://github.com/BlackReloaded/wsl2-ssh-pageant/releases/download/v1.2.0/wsl2-ssh-pageant.exe -O ~/.ssh/wsl2-ssh-pageant.exe
-$ chmod +x ~/.ssh/wsl2-ssh-pageant.exe
+sudo apt install socat
+mkdir ~/.ssh
+wget https://github.com/BlackReloaded/wsl2-ssh-pageant/releases/download/v1.2.0/wsl2-ssh-pageant.exe -O ~/.ssh/wsl2-ssh-pageant.exe
+chmod +x ~/.ssh/wsl2-ssh-pageant.exe
 ```
 
 ### Sync socket
@@ -140,19 +147,19 @@ wsl.exe --shutdown
 
 If you check GPG keys available in WSL2 via ``gpg --list-keys`` or ``gpg --list-secret-keys`` and you get empty results, you have to first import them. It’s quite easy just run:
 ```
-$ gpg --card-edit
+gpg --card-edit
 ```
 
 Get your public key (url should be shown on gpg command output) via ``wget`` or ``curl``, then import it :
 ```
-$ gpg --import PATH_TO_ASC_FILE
+gpg --import PATH_TO_ASC_FILE
 ```
 
 Now run ``gpg --list-keys`` you finally get your keys.
 
 Now we are missing one small step. As you can see. The trustworthiness of our certificate is unknown (information next to the name). We can change it via running:
 ```
-$ gpg --edit-key YOUR_KEY_ID # Last 8 chars of your pubkey's id
+gpg --edit-key YOUR_KEY_ID # Last 8 chars of your pubkey's id
 ```
 
 This opens gpg console insterface. Write:
@@ -166,15 +173,17 @@ If you list keys via ``gpg --list-keys`` now. You should be able to see ``[ultim
 ### Using Yubikey over SSH
 
 ```
-$ ssh-add -L 
+ssh-add -L 
 ```
 You should see your auth key here. 
 
 If something wrong, try to reload your gpg-agent :
 ```
-# WSL 2
+# WSL2
 $ exit
+```
 
+```
 # Windows
 wsl --shutdown
 gpg-connect-agent killagent /bye
@@ -211,8 +220,7 @@ On configuration window, check ``Install required Windows components for WSL 2``
 
 Download and install using ``pyenv-installer``
 ```
-# WSL2
-$ curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 ```
 
 Add to your ``.bashrc``
@@ -228,23 +236,42 @@ fi
 
 Install pyenv dependencies
 ```
-# WSL2
-$ sudo apt-get install --yes libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libgdbm-dev lzma lzma-dev tcl-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev wget curl make build-essential python-openssl 
+sudo apt-get install --yes libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libgdbm-dev lzma lzma-dev tcl-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev wget curl make build-essential python-openssl 
 ```
 
 Reload your shell
 ```
 # WSL2
-$ exec $SHELL
+exec $SHELL
 ```
 
 You can now use pyenv to install multi version of python
 ```
 # WSL2
 # List versions
-$ pyenv install -l
+pyenv install -l
 
 # Install version
-$ pyenv install <version>
+pyenv install <version>
 ```
 
+## Install npm with nvm
+
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+```
+
+You can now use nvm to install mutl version of npm
+```
+# List version of npm (lts version)
+nvm ls-remote --lts
+
+# Install version of npm
+nvm install lts/fermium
+
+# Check current version of npm
+nvm current
+
+# To use a different version of npm (update PATH)
+nvm use <version>
+```
