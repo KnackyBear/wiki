@@ -22,6 +22,7 @@
    * [EstablishContextException: 'Failure to establish context: Service not available.'](yubikey.md#establishcontextexception-failure-to-establish-context-service-not-available)
    * [sign_and_send_pubkey: signing failed for RSA "cardno:xxxxxxxxxxxxxx" from agent: agent refused operation](yubikey.md#sign_and_send_pubkey-signing-failed-for-rsa-cardnoxxxxxxxxxxxxxx-from-agent-agent-refused-operation)
    * [Kill/Restart GPG Agent](yubikey.md#killrestart-gpg-agent)
+   * [I changed my email on github and I can't use anymore my key...](yubikey.md#i-changed-my-email-on-github-and-i-can-t-use-anymore-my-key)
 
 
 ## Resources
