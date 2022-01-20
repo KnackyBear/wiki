@@ -696,3 +696,53 @@ $ cp /etc/xdg/autostart/gnome-keyring-ssh.desktop ~/.config/autostart/
 $ echo "Hidden=true" >> ~/.config/autostart/gnome-keyring-ssh.desktop
 $ echo "GSM_SKIP_SSH_AGENT_WORKAROUND DEFAULT=1" >> ~/.pam_environment
 ```
+
+### I changed my email on github and I can't use anymore my key...
+
+...Or you will get the message below :
+```
+gpg failed to sign the data fatal
+failed to write commit object
+```
+
+You cannot delete keys nor modify UIDs for keys uploaded to PGP key servers.
+
+To change your email, you must add a new UID.
+```
+$ gpg --edit-key <keyID>
+gpg> adduid
+Real name: <name>
+Email address: <email>
+Comment: <comment>
+Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? o
+You need a passphrase to unlock the secret key for
+user: "foo <foo@bar.com>"
+```
+
+Update the trust level of the new UID.
+```
+gpg> uid <new uid number>
+gpg> trust
+Your decision? 5
+Do you really want to set this key to ultimate trust? (y/N) y
+gpg> uid <new uid number>
+```
+
+Revoke the old UID.
+```
+gpg> uid <old uid number>
+gpg> revuid
+Really revoke this user ID? (y/N) y
+Your decision? 4
+Enter an optional description; end it with an empty line: <description>
+Is this okay? (y/N) y
+```
+
+Save the changes. Upload the updated key to your PGP key server.
+```
+gpg> save
+$ gpg --keyserver hkp://pgp.mit.edu --send-keys <keyID>
+```
+
+Then, upload your new public key on github (with the good email).
+It's all done. Enjoy :)
